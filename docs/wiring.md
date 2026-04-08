@@ -2,7 +2,12 @@
 
 This guide covers all electrical connections for the MERPY robot.
 
-## Wiring Diagram Overview
+## Wiring Diagram
+
+![MERPY Wiring Diagram](images/wiring_diagram.png)
+
+<details>
+<summary>Text version (ASCII)</summary>
 
 ```
                     ┌─────────────────┐
@@ -40,6 +45,8 @@ This guide covers all electrical connections for the MERPY robot.
         │  OUT: 5V → ESP32  │
         └──────────────────┘
 ```
+
+</details>
 
 ## ESP32 to L298N - Motor Control
 
