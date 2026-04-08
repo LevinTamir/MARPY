@@ -1,0 +1,38 @@
+services:
+  agent:
+    image: microros/micro-ros-agent:jazzy
+    container_name: merpy_agent
+    network_mode: host
+    command: ["udp4", "--port", "8888", "-v6"]
+    restart: unless-stopped
+    environment:
+      - ROS_DOMAIN_ID=0
+
+  merpy:
+    image: merpy_ws
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+        USERNAME: robot
+    container_name: merpy_ws
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - ROS_DOMAIN_ID=0
+    volumes:
+      - ../src:/home/robot/ws/src
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    group_add:
+      - dialout
+      - video
+    ipc: host
+    working_dir: /home/robot/ws
+    command: ["bash", "-lc", "sleep infinity"]
+    stdin_open: true
+    tty: true
+    depends_on:
+      - agent

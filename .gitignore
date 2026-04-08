@@ -1,0 +1,20 @@
+## ROS2 build artifacts
+build/
+install/
+log/
+
+## IDE
+.vscode/
+.idea/
+
+## Claude Code (local project config, not for GitHub)
+.claude/
+
+## Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+## OS
+.DS_Store
+Thumbs.db
