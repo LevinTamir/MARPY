@@ -26,12 +26,15 @@ Everything you need to build your own MERPY robot. Total cost is approximately *
 
 ## 3D Printed Parts
 
-| # | Part | Qty | Material | Notes |
-|---|------|-----|----------|-------|
-| 13 | Bottom Deck (chassis plate) | 1 | PLA/PETG | Motor mounts integrated |
-| 14 | Top Deck (electronics plate) | 1 | PLA/PETG | ESP32 + accessory mounting |
-| 15 | Caster Wheel Mount | 1 | PLA/PETG | Rear caster bracket |
-| 16 | Motor Clamps (optional) | 2 | PLA/PETG | If not using integrated mounts |
+| # | Part | File | Qty | Material |
+|---|------|------|-----|----------|
+| 13 | Base Plate (bottom deck) | `Merpy_base_plate.STL` | 1 | PLA/PETG |
+| 14 | Top Plate (electronics deck) | `Merpy_top_plate.STL` | 1 | PLA/PETG |
+| 15 | Left Motor Mount | `Merpy_left_TT_motor_mount.STL` | 1 | PLA/PETG |
+| 16 | Right Motor Mount | `Merpy_right_TT_motor_mount.STL` | 1 | PLA/PETG |
+| 17 | On/Off Switch Mount | `Merpy_on_off_switch_mount.STL` | 1 | PLA/PETG |
+| 18 | Camera Mount | `Merpy_cam_mount.STL` | 1 | PLA/PETG |
+| 19 | ESP32-CAM Case | `ESP32_cam_case.stl` | 1 | PLA/PETG |
 
 > **Note:** STL files for all printed parts are in the [`CAD/`](../CAD/) folder. Print at 0.2mm layer height, 20%+ infill. PLA works fine for indoor use.
 
