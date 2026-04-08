@@ -6,6 +6,10 @@ This guide covers all electrical connections for the MERPY robot.
 
 ![MERPY Wiring Diagram](images/wiring_diagram.png)
 
+## Full Schematic (EasyEDA)
+
+![MERPY Schematic](images/merpy_schematic.png)
+
 <details>
 <summary>Text version (ASCII)</summary>
 
