@@ -10,43 +10,6 @@ This guide covers all electrical connections for the MERPY robot.
 
 ![MERPY Schematic](images/merpy_schematic.png)
 
-<details>
-<summary>Text version (ASCII)</summary>
-
-```
-  ESP32 DevKit                L298N                    Motors (6 wires each)
-  ─────────────               ──────                   ─────────────────────
-
-  GPIO 25 (PWM) ────────────► ENA
-  GPIO 26       ────────────► IN1          OUT1 ─────► Right Motor (+)
-  GPIO 27       ────────────► IN2          OUT2 ─────► Right Motor (-)
-  GPIO 32       ────────────► IN3          OUT3 ─────► Left Motor (+)
-  GPIO 33       ────────────► IN4          OUT4 ─────► Left Motor (-)
-  GPIO 14 (PWM) ────────────► ENB
-                              +12V ◄───── Battery + (7.4V)
-  GPIO 18 ◄──────────────────────────────── Right Encoder Ch A
-  GPIO 19 ◄──────────────────────────────── Right Encoder Ch B
-  GPIO 21 ◄──────────────────────────────── Left Encoder Ch A
-  GPIO 22 ◄──────────────────────────────── Left Encoder Ch B
-
-  VIN (5V) ◄─── Buck Converter (5V out) ──► Encoder VCC (both motors)
-  GND ◄──────── Common Ground ────────────► Encoder GND (both motors)
-                                      │
-                              L298N GND ◄──┘
-                              Buck GND  ◄──┘
-
-  Power:
-  ┌──────────────┐     ┌──────────────┐
-  │ 2S 18650     │────►│ L298N +12V   │  (7.4V direct to motors)
-  │ Battery      │────►│ Buck Conv.   │  (7.4V -> 5V for ESP32 + encoders)
-  │ 7.4V         │     │              │
-  └──────────────┘     └──────────────┘
-
-  NOTE: Remove ENA/ENB jumpers on L298N!
-```
-
-</details>
-
 ## ESP32 to L298N - Motor Control
 
 | ESP32 GPIO | L298N Pin | Function |
