@@ -33,6 +33,15 @@ def generate_launch_description():
         launch_arguments={"world_name": LaunchConfiguration("world_name")}.items(),
     )
 
+    # Odometry from joint states (same node as real hardware)
+    odometry_node = Node(
+        package="marpy_localization",
+        executable="odometry_node",
+        name="odometry_node",
+        output="screen",
+        parameters=[{"use_sim_time": True}],
+    )
+
     # RViz visualization
     rviz = Node(
         package="rviz2",
@@ -48,5 +57,6 @@ def generate_launch_description():
     return LaunchDescription([
         world_name_arg,
         gazebo,
+        odometry_node,
         rviz,
     ])

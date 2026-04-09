@@ -67,9 +67,9 @@
   </gazebo>
 
   <!--
-    DiffDrive plugin: subscribes to /cmd_vel, publishes /odom and /tf.
-    This matches the real robot's ESP32 firmware interface exactly,
-    so any node publishing /cmd_vel works on both sim and real hardware.
+    DiffDrive plugin: subscribes to /cmd_vel and drives the wheel joints.
+    Odometry is NOT computed here - marpy_localization handles it from
+    /joint_states, keeping the sim pipeline identical to real hardware.
   -->
   <gazebo>
     <plugin filename="gz-sim-diff-drive-system"
@@ -80,12 +80,7 @@
       <wheel_radius>0.033</wheel_radius>
       <max_linear_acceleration>1.0</max_linear_acceleration>
       <max_angular_acceleration>2.0</max_angular_acceleration>
-      <odom_publish_frequency>20</odom_publish_frequency>
       <topic>/cmd_vel</topic>
-      <odom_topic>/odom</odom_topic>
-      <tf_topic>/tf</tf_topic>
-      <frame_id>odom</frame_id>
-      <child_frame_id>base_footprint</child_frame_id>
     </plugin>
   </gazebo>
 
