@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Wheel friction tuning -->
+  <gazebo reference="left_wheel">
+    <mu1>1.0</mu1>
+    <mu2>0.5</mu2>
+    <kp>1e6</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+
+  <gazebo reference="right_wheel">
+    <mu1>1.0</mu1>
+    <mu2>0.5</mu2>
+    <kp>1e6</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+
+  <!-- Low friction caster -->
+  <gazebo reference="caster_wheel">
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+    <kp>1e6</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <!-- Gazebo colors (Gazebo ignores URDF <material>, needs its own tags) -->
+  <gazebo reference="base_link">
+    <visual>
+      <material>
+        <ambient>0.792 0.820 0.933 1.0</ambient>
+        <diffuse>0.792 0.820 0.933 1.0</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="left_wheel">
+    <visual>
+      <material>
+        <ambient>0.2 0.2 0.2 1.0</ambient>
+        <diffuse>0.2 0.2 0.2 1.0</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="right_wheel">
+    <visual>
+      <material>
+        <ambient>0.2 0.2 0.2 1.0</ambient>
+        <diffuse>0.2 0.2 0.2 1.0</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <gazebo reference="caster_wheel">
+    <visual>
+      <material>
+        <ambient>0.2 0.2 0.2 1.0</ambient>
+        <diffuse>0.2 0.2 0.2 1.0</diffuse>
+      </material>
+    </visual>
+  </gazebo>
+
+  <!--
+    DiffDrive plugin: subscribes to /cmd_vel, publishes /odom and /tf.
+    This matches the real robot's ESP32 firmware interface exactly,
+    so any node publishing /cmd_vel works on both sim and real hardware.
+  -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system"
+            name="gz::sim::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.116</wheel_separation>
+      <wheel_radius>0.033</wheel_radius>
+      <max_linear_acceleration>1.0</max_linear_acceleration>
+      <max_angular_acceleration>2.0</max_angular_acceleration>
+      <odom_publish_frequency>20</odom_publish_frequency>
+      <topic>/cmd_vel</topic>
+      <odom_topic>/odom</odom_topic>
+      <tf_topic>/tf</tf_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+    </plugin>
+  </gazebo>
+
+  <!-- Publish joint states so robot_state_publisher can compute TFs -->
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+      <joint_name>left_wheel_joint</joint_name>
+      <joint_name>right_wheel_joint</joint_name>
+      <topic>/joint_states</topic>
+      <update_rate>20</update_rate>
+    </plugin>
+  </gazebo>
+
+</robot>

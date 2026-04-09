@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="merpy">
+
+  <xacro:include filename="$(find merpy_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find merpy_description)/urdf/merpy_gazebo.xacro" />
+
+  <!-- ==================== Properties ==================== -->
+  <!-- Wheel geometry (from CLAUDE.md specs) -->
+  <xacro:property name="wheel_radius"     value="0.033" />
+  <xacro:property name="wheel_separation" value="0.116" />  <!-- 2 * 0.058 -->
+
+  <!-- ==================== base_footprint ==================== -->
+  <!-- Ground-plane frame - sits at the contact point of the wheels -->
+  <link name="base_footprint" />
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0 0 0.04825" rpy="0 0 0" />
+  </joint>
+
+  <!-- ==================== base_link ==================== -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.005043 -0.0000095 0.029688" rpy="0 0 0" />
+      <mass value="0.376" />
+      <inertia
+        ixx="0.000413"  ixy="-3.78e-08" ixz="-4.35e-07"
+        iyy="0.000656"  iyz="-1.72e-08"
+        izz="0.001061" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://merpy_description/meshes/base_link.STL" />
+      </geometry>
+      <material name="light_blue" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://merpy_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ==================== left_wheel ==================== -->
+  <link name="left_wheel">
+    <inertial>
+      <origin xyz="0 0.000627 0" rpy="0 0 0" />
+      <mass value="0.167" />
+      <inertia
+        ixx="6.73e-05"  ixy="0"         ixz="0"
+        iyy="1.132e-04" iyz="0"
+        izz="6.73e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://merpy_description/meshes/left_wheel.STL" />
+      </geometry>
+      <material name="dark_grey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link" />
+    <child link="left_wheel" />
+    <origin xyz="0.05725 0.058 -0.01525" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit effort="10" velocity="10" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+
+  <!-- ==================== right_wheel ==================== -->
+  <link name="right_wheel">
+    <inertial>
+      <origin xyz="0 -0.000627 0" rpy="0 0 0" />
+      <mass value="0.167" />
+      <inertia
+        ixx="6.73e-05"  ixy="0"         ixz="0"
+        iyy="1.132e-04" iyz="0"
+        izz="6.73e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://merpy_description/meshes/right_wheel.STL" />
+      </geometry>
+      <material name="dark_grey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="0.025" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link" />
+    <child link="right_wheel" />
+    <origin xyz="0.05725 -0.058 -0.01525" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit effort="10" velocity="10" />
+    <dynamics damping="0.1" friction="0.1" />
+  </joint>
+
+  <!-- ==================== caster_wheel ==================== -->
+  <link name="caster_wheel">
+    <inertial>
+      <origin xyz="-0.008514 -0.000584 -0.01544" rpy="0 0 0" />
+      <mass value="0.007" />
+      <inertia
+        ixx="4.87e-07"  ixy="-2.84e-09" ixz="-2.58e-08"
+        iyy="5.86e-07"  iyz="-7.11e-10"
+        izz="6.29e-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://merpy_description/meshes/caster_wheel.STL" />
+      </geometry>
+      <material name="dark_grey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.01425" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.019" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_wheel_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="caster_wheel" />
+    <origin xyz="-0.09775 0 -0.015" rpy="0 0 0" />
+  </joint>
+
+</robot>
