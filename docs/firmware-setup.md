@@ -23,8 +23,8 @@ The easiest way to use it is through the **VS Code extension**:
 ## 1. Clone the Firmware
 
 ```bash
-git clone https://github.com/LevinTamir/merpy_firmware.git
-cd merpy_firmware
+git clone https://github.com/LevinTamir/marpy_firmware.git
+cd marpy_firmware
 ```
 
 ## 2. Configure WiFi and Agent IP
@@ -77,7 +77,7 @@ echo "IP:   $(hostname -I | awk '{print $1}')"
 
 ### Using VS Code (recommended)
 
-1. Open the `merpy_firmware` folder in VS Code (`File > Open Folder`)
+1. Open the `marpy_firmware` folder in VS Code (`File > Open Folder`)
 2. PlatformIO will detect the `platformio.ini` file and configure the project automatically
 3. Connect the ESP32 via USB
 4. Click the **Upload** button (right arrow icon ➜) in the bottom status bar

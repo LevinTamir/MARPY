@@ -8,11 +8,11 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
-    pkg_dir = get_package_share_directory("merpy_description")
+    pkg_dir = get_package_share_directory("marpy_description")
 
     model_arg = DeclareLaunchArgument(
         name="model",
-        default_value=os.path.join(pkg_dir, "urdf", "merpy.xacro"),
+        default_value=os.path.join(pkg_dir, "urdf", "marpy.xacro"),
         description="Absolute path to robot xacro file",
     )
 

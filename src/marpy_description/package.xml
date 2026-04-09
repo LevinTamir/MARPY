@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>merpy_description</name>
+  <name>marpy_description</name>
   <version>0.1.0</version>
-  <description>URDF, meshes, and launch files for MERPY differential-drive robot</description>
+  <description>URDF, meshes, and launch files for MARPY differential-drive robot</description>
   <maintainer email="tamir@todo.com">Tamir Levin</maintainer>
   <license>MIT</license>
 

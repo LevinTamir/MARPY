@@ -1,8 +1,8 @@
 # Assembly Instructions
 
-Step-by-step guide to build your MERPY robot.
+Step-by-step guide to build your MARPY robot.
 
-![MERPY Side View](images/merpy_side.png)
+![MARPY Side View](images/marpy_side.png)
 
 ## What You'll Need
 
@@ -27,7 +27,7 @@ Print the following parts (see [`CAD/`](../CAD/) for STL files):
 2. Ensure both motors face outward with shafts protruding through the side holes
 3. Press the yellow TT wheels onto the motor shafts
 
-![MERPY Front View](images/merpy_front.png)
+![MARPY Front View](images/marpy_front.png)
 
 ## Step 3: Attach the Caster Wheel
 
@@ -67,7 +67,7 @@ For each motor, connect:
 2. Connect all control wires from the L298N and encoders (see [Wiring Guide](wiring.md))
 3. Connect 5V from the buck converter to ESP32 VIN and GND
 
-![MERPY Isometric View](images/merpy_isometric.png)
+![MARPY Isometric View](images/marpy_isometric.png)
 
 ## Step 9: Flash and Test
 

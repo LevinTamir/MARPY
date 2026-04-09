@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/merpy_banner.png" width="100%" alt="MERPY - Most Effordable ROS2 Platform Yet"/>
+  <img src="docs/images/marpy_banner.png" width="100%" alt="MARPY - Most Affordable ROS2 Platform Yet"/>
 </p>
 
 <div align="center">
@@ -24,8 +24,8 @@ A cheap, open-source, 3D-printed differential-drive robot designed for beginners
 ### 1. Clone the workspace
 
 ```bash
-git clone https://github.com/LevinTamir/MERPY.git merpy_ws
-cd merpy_ws
+git clone https://github.com/LevinTamir/MARPY.git marpy_ws
+cd marpy_ws
 ```
 
 ### 2. Build the robot
@@ -46,18 +46,16 @@ Follow the guides in order:
 # Terminal 1: Start the micro-ROS agent
 docker run -it --rm --net=host microros/micro-ros-agent:jazzy udp4 --port 8888 -v6
 
-# Terminal 2: Build and run teleop
-cd merpy_ws
-colcon build --symlink-install
-source install/setup.bash
-ros2 run teleop_control_node teleop_control
+# Terminal 2: Drive with keyboard teleop
+sudo apt install ros-jazzy-teleop-twist-keyboard
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
 
 ## Repository Structure
 
 ```
-merpy_ws/
+marpy_ws/
 ├── README.md               ← You are here
 ├── docs/
 │   ├── bom.md              ← Bill of materials + purchase links
@@ -67,7 +65,8 @@ merpy_ws/
 │   ├── ros2-setup.md       ← ROS2 + micro-ROS agent setup
 │   └── images/             ← Robot photos and diagrams
 ├── src/
-│   └── teleop_control_node/← Keyboard teleop ROS2 package
+│   ├── marpy_description/  ← URDF model + meshes
+│   └── marpy_bringup/      ← Launch files
 ├── docker/
 │   ├── docker-compose.yml  ← micro-ROS agent + dev container
 │   ├── Dockerfile          ← ROS2 Jazzy dev environment
@@ -80,7 +79,7 @@ merpy_ws/
 
 The ESP32 firmware lives in a separate repo:
 
-**[merpy_firmware](https://github.com/LevinTamir/merpy_firmware)** - PlatformIO project with micro-ROS, motor control, and encoder reading.
+**[marpy_firmware](https://github.com/LevinTamir/marpy_firmware)** - PlatformIO project with micro-ROS, motor control, and encoder reading.
 
 ## ROS2 Topics
 
@@ -92,4 +91,4 @@ The ESP32 firmware lives in a separate repo:
 
 ## Contributing
 
-Contributions are welcome! If you build a MERPY robot, open an issue with photos - we'd love to see it.
+Contributions are welcome! If you build a MARPY robot, open an issue with photos - we'd love to see it.

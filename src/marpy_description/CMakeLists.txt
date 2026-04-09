@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.8)
-project(merpy_bringup)
+project(marpy_description)
 
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY launch
+  DIRECTORY launch urdf meshes rviz worlds
   DESTINATION share/${PROJECT_NAME}
 )
 

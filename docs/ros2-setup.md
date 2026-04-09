@@ -1,6 +1,6 @@
 # ROS2 Setup Guide
 
-Complete setup guide for running MERPY on Ubuntu 24.04 with ROS2 Jazzy.
+Complete setup guide for running MARPY on Ubuntu 24.04 with ROS2 Jazzy.
 
 ## Option A: Docker (Recommended for Beginners)
 
@@ -13,8 +13,8 @@ Docker is the easiest way to get started - no ROS2 installation needed on your h
 ### 1. Clone the Workspace
 
 ```bash
-git clone https://github.com/LevinTamir/MERPY.git merpy_ws
-cd merpy_ws
+git clone https://github.com/LevinTamir/MARPY.git marpy_ws
+cd marpy_ws
 ```
 
 ### 2. Start the Containers
@@ -29,7 +29,7 @@ docker compose up -d
 ### 3. Enter the Workspace
 
 ```bash
-docker exec -it merpy_ws bash
+docker exec -it marpy_ws bash
 ```
 
 ### 4. Build the Workspace
@@ -58,8 +58,8 @@ Now drive your robot with `i`, `j`, `k`, `l` keys!
 ### 1. Clone and Build the Workspace
 
 ```bash
-git clone https://github.com/LevinTamir/MERPY.git merpy_ws
-cd merpy_ws
+git clone https://github.com/LevinTamir/MARPY.git marpy_ws
+cd marpy_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 source install/setup.bash
@@ -118,7 +118,7 @@ ros2 run teleop_control_node teleop_control
 docker run -it --rm --net=host microros/micro-ros-agent:jazzy udp4 --port 8888 -v6
 
 # Terminal 2: Teleop
-cd merpy_ws
+cd marpy_ws
 source install/setup.bash
 ros2 run teleop_control_node teleop_control
 ```

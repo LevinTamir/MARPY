@@ -1,7 +1,7 @@
-"""Launch MERPY in Gazebo simulation with RViz.
+"""Launch MARPY in Gazebo simulation with RViz.
 
 Teleop is launched separately from another terminal:
-  ros2 run merpy_teleop teleop_control
+  ros2 run marpy_teleop teleop_control
 
 Kill leftover processes before relaunching:
   pkill -9 -f "gz sim|rviz2|robot_state_publisher|parameter_bridge"
@@ -17,7 +17,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    merpy_description_dir = get_package_share_directory("merpy_description")
+    marpy_description_dir = get_package_share_directory("marpy_description")
 
     world_name_arg = DeclareLaunchArgument(
         name="world_name",
@@ -28,7 +28,7 @@ def generate_launch_description():
     # Launch Gazebo with the robot (includes robot_state_publisher + bridge)
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(merpy_description_dir, "launch", "gazebo.launch.py")
+            os.path.join(marpy_description_dir, "launch", "gazebo.launch.py")
         ),
         launch_arguments={"world_name": LaunchConfiguration("world_name")}.items(),
     )
@@ -40,7 +40,7 @@ def generate_launch_description():
         name="rviz2",
         output="screen",
         arguments=[
-            "-d", os.path.join(merpy_description_dir, "rviz", "display.rviz"),
+            "-d", os.path.join(marpy_description_dir, "rviz", "display.rviz"),
         ],
         parameters=[{"use_sim_time": True}],
     )

@@ -1,14 +1,14 @@
 # Wiring Guide
 
-This guide covers all electrical connections for the MERPY robot.
+This guide covers all electrical connections for the MARPY robot.
 
 ## Wiring Diagram
 
-<img src="images/wiring_diagram.png" width="800" alt="MERPY Wiring Diagram"/>
+<img src="images/wiring_diagram.png" width="800" alt="MARPY Wiring Diagram"/>
 
 ## Full Schematic
 
-<img src="images/merpy_schematic.png" width="800" alt="MERPY Schematic"/>
+<img src="images/marpy_schematic.png" width="800" alt="MARPY Schematic"/>
 
 ## ESP32 to L298N - Motor Control
 

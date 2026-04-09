@@ -1,6 +1,6 @@
 # Bill of Materials (BOM)
 
-Everything you need to build your own MERPY robot. Total cost is approximately **$40-55 USD** depending on what you already have.
+Everything you need to build your own MARPY robot. Total cost is approximately **$40-55 USD** depending on what you already have.
 
 ## Electronics
 
@@ -28,12 +28,12 @@ Everything you need to build your own MERPY robot. Total cost is approximately *
 
 | # | Part | File | Qty | Material |
 |---|------|------|-----|----------|
-| 13 | Base Plate (bottom deck) | `Merpy_base_plate.STL` | 1 | PLA/PETG |
-| 14 | Top Plate (electronics deck) | `Merpy_top_plate.STL` | 1 | PLA/PETG |
-| 15 | Left Motor Mount | `Merpy_left_TT_motor_mount.STL` | 1 | PLA/PETG |
-| 16 | Right Motor Mount | `Merpy_right_TT_motor_mount.STL` | 1 | PLA/PETG |
-| 17 | On/Off Switch Mount | `Merpy_on_off_switch_mount.STL` | 1 | PLA/PETG |
-| 18 | Camera Mount | `Merpy_cam_mount.STL` | 1 | PLA/PETG |
+| 13 | Base Plate (bottom deck) | `Marpy_base_plate.STL` | 1 | PLA/PETG |
+| 14 | Top Plate (electronics deck) | `Marpy_top_plate.STL` | 1 | PLA/PETG |
+| 15 | Left Motor Mount | `Marpy_left_TT_motor_mount.STL` | 1 | PLA/PETG |
+| 16 | Right Motor Mount | `Marpy_right_TT_motor_mount.STL` | 1 | PLA/PETG |
+| 17 | On/Off Switch Mount | `Marpy_on_off_switch_mount.STL` | 1 | PLA/PETG |
+| 18 | Camera Mount | `Marpy_cam_mount.STL` | 1 | PLA/PETG |
 | 19 | ESP32-CAM Case | `ESP32_cam_case.stl` | 1 | PLA/PETG |
 
 > **Note:** STL files for all printed parts are in the [`CAD/`](../CAD/) folder. Print at 0.2mm layer height, 20%+ infill. PLA works fine for indoor use.
