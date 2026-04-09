@@ -2,6 +2,7 @@
 
 Subscribes to /joint_states (published by ESP32 or Gazebo) and produces:
   - /odom  (nav_msgs/Odometry)
+  - /odom_path  (nav_msgs/Path) — accumulated route the robot has traveled
   - odom -> base_footprint TF broadcast
 
 This node is used in both simulation and real hardware so the data
@@ -15,8 +16,9 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile
 
 from sensor_msgs.msg import JointState
-from nav_msgs.msg import Odometry
+from nav_msgs.msg import Odometry, Path
 from geometry_msgs.msg import (
+    PoseStamped,
     TransformStamped,
     Quaternion,
 )
@@ -47,8 +49,13 @@ class OdometryNode(Node):
         self.prev_right_pos = None
         self.prev_time = None
 
+        # Path accumulator
+        self.path = Path()
+        self.path.header.frame_id = "odom"
+
         # Publishers
         self.odom_pub = self.create_publisher(Odometry, "/odom", 10)
+        self.path_pub = self.create_publisher(Path, "/odom_path", 10)
         self.tf_broadcaster = TransformBroadcaster(self)
 
         # Subscriber
@@ -118,6 +125,15 @@ class OdometryNode(Node):
         odom.twist.twist.angular.z = omega
 
         self.odom_pub.publish(odom)
+
+        # Append to path and publish
+        pose_stamped = PoseStamped()
+        pose_stamped.header.stamp = now.to_msg()
+        pose_stamped.header.frame_id = "odom"
+        pose_stamped.pose = odom.pose.pose
+        self.path.poses.append(pose_stamped)
+        self.path.header.stamp = now.to_msg()
+        self.path_pub.publish(self.path)
 
         # Broadcast odom -> base_footprint transform
         t = TransformStamped()

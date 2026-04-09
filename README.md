@@ -39,6 +39,7 @@ Follow the guides in order:
 | 3 | [Wiring Guide](docs/wiring.md) | Connect all the electronics |
 | 4 | [Firmware Setup](docs/firmware-setup.md) | Flash the ESP32 with micro-ROS |
 | 5 | [ROS2 Setup](docs/ros2-setup.md) | Set up your PC and start driving! |
+| 6 | [Simulation](docs/simulation.md) | Run MARPY in Gazebo (no hardware needed) |
 
 ### 3. Drive!
 
@@ -65,8 +66,9 @@ marpy_ws/
 │   ├── ros2-setup.md       ← ROS2 + micro-ROS agent setup
 │   └── images/             ← Robot photos and diagrams
 ├── src/
-│   ├── marpy_description/  ← URDF model + meshes
-│   └── marpy_bringup/      ← Launch files
+│   ├── marpy_description/  ← URDF model + meshes + Gazebo worlds
+│   ├── marpy_localization/ ← Wheel odometry + path tracking
+│   └── marpy_bringup/      ← Launch files (sim + real)
 ├── docker/
 │   ├── docker-compose.yml  ← micro-ROS agent + dev container
 │   ├── Dockerfile          ← ROS2 Jazzy dev environment
@@ -87,6 +89,8 @@ The ESP32 firmware lives in a separate repo:
 |-------|------|-----------|------|
 | `/cmd_vel` | `geometry_msgs/Twist` | PC → ESP32 | On demand |
 | `/joint_states` | `sensor_msgs/JointState` | ESP32 → PC | 20 Hz |
+| `/odom` | `nav_msgs/Odometry` | Odometry node | 20 Hz |
+| `/odom_path` | `nav_msgs/Path` | Odometry node | 20 Hz |
 
 
 ## Contributing
