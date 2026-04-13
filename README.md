@@ -73,7 +73,6 @@ marpy_ws/
 │   ├── docker-compose.yml  ← micro-ROS agent + dev container
 │   ├── Dockerfile          ← ROS2 Jazzy dev environment
 │   └── entrypoint.sh
-├── CAD/                    ← STL files for 3D printing
 └── .github/workflows/      ← CI/CD pipeline
 ```
 
@@ -91,8 +90,10 @@ The ESP32 firmware lives in a separate repo:
 | `/joint_states` | `sensor_msgs/JointState` | ESP32 → PC | 20 Hz |
 | `/odom` | `nav_msgs/Odometry` | Odometry node | 20 Hz |
 | `/odom_path` | `nav_msgs/Path` | Odometry node | 20 Hz |
+| `/imu` | `sensor_msgs/Imu` | IMU sensor | 50 Hz |
 
 
 ## Contributing
 
 Contributions are welcome! If you build a MARPY robot, open an issue with photos - we'd love to see it.
+e

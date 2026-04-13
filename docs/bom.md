@@ -35,8 +35,9 @@ Everything you need to build your own MARPY robot. Total cost is approximately *
 | 17 | On/Off Switch Mount | `Marpy_on_off_switch_mount.STL` | 1 | PLA/PETG |
 | 18 | Camera Mount | `Marpy_cam_mount.STL` | 1 | PLA/PETG |
 | 19 | ESP32-CAM Case | `ESP32_cam_case.stl` | 1 | PLA/PETG |
+| 20 *(optional)* | ESP32-CAM Case (GoPro mount) | [Printables](https://www.printables.com/model/837615-esp32-cam-case-with-gopro-mount) | 1 | PLA/PETG |
 
-> **Note:** STL files for all printed parts are in the [`CAD/`](../CAD/) folder. Print at 0.2mm layer height, 20%+ infill. PLA works fine for indoor use.
+> **Note:** STL files for all printed parts are available on [MakerWorld](https://makerworld.com/en/models/2655868-marpy#profileId-2936800). The optional ESP32-CAM GoPro case can be used with the camera mount adapter included in the MakerWorld files. Print at 0.2mm layer height, 20%+ infill. PLA works fine for indoor use.
 
 ## Tools Needed (not included in BOM)
 

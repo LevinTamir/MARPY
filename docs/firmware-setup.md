@@ -1,6 +1,6 @@
 # Firmware Setup (ESP32)
 
-This guide walks you through flashing the micro-ROS firmware onto the ESP32.
+This guide walks you through flashing the micro-ROS firmware onto the ESP32. Make sure you've completed the [Assembly](assembly.md) and [Wiring](wiring.md) first.
 
 ## What is PlatformIO?
 
@@ -115,4 +115,4 @@ If it stays on "Waiting for micro-ROS agent..." - make sure the agent is running
 | Upload fails | Hold the **BOOT** button on ESP32 while uploading |
 | WiFi won't connect | Double-check SSID/password in `include/wifi_config.h`, ensure 2.4GHz network (ESP32 doesn't support 5GHz) |
 | Agent not found | Verify PC IP address, check firewall (`sudo ufw allow 8888/udp`) |
-| Motors don't spin | Check wiring, verify L298N ENA/ENB jumpers are **removed** |
+| Motors don't spin | Check the [Wiring Guide](wiring.md) - verify L298N ENA/ENB jumpers are **removed** |

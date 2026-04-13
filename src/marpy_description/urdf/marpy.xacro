@@ -22,12 +22,12 @@
   <!-- ==================== base_link ==================== -->
   <link name="base_link">
     <inertial>
-      <origin xyz="-0.005043 -0.0000095 0.029688" rpy="0 0 0" />
-      <mass value="0.376" />
+      <origin xyz="-0.006324 -9.655e-06 0.029104" rpy="0 0 0" />
+      <mass value="0.370" />
       <inertia
-        ixx="0.000413"  ixy="-3.78e-08" ixz="-4.35e-07"
-        iyy="0.000656"  iyz="-1.72e-08"
-        izz="0.001061" />
+        ixx="0.000410"  ixy="-3.76e-08" ixz="-5.34e-07"
+        iyy="0.000657"  iyz="-1.72e-08"
+        izz="0.001058" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -43,6 +43,37 @@
       </geometry>
     </collision>
   </link>
+
+  <!-- ==================== imu_link ==================== -->
+  <link name="imu_link">
+    <inertial>
+      <origin xyz="-0.002055 -8.047e-05 0.000508" rpy="0 0 0" />
+      <mass value="0.000548" />
+      <inertia
+        ixx="1.944e-08"  ixy="-3.334e-11" ixz="8.066e-11"
+        iyy="8.684e-09"  iyz="-4.442e-11"
+        izz="2.648e-08" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://marpy_description/meshes/imu_link.STL" />
+      </geometry>
+      <material name="dark_grey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://marpy_description/meshes/imu_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="imu_link" />
+    <origin xyz="0.024 0 0.0705" rpy="0 0 0" />
+  </joint>
 
   <!-- ==================== left_wheel ==================== -->
   <link name="left_wheel">
