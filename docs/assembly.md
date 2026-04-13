@@ -122,35 +122,49 @@ Mount the electronic components onto the base plate. Wiring is covered in the [W
 <img src="images/wheels_assembly2.jpeg" height="250" alt="Wheels attached side view"/>
 </p>
 
-## Step 7: Install Standoffs and Top Deck
+## Step 7: Mount the ESP32 on Top Plate
 
 | Hardware | Qty |
 |----------|-----|
 | Top plate (3D printed) | 1 |
+| ESP32 DevKit V1 | 1 |
+| Screw terminal breakout board | 1 |
+| M3x8 screws | 6 |
+
+1. Mount the screw terminal breakout board onto the top plate using M3 screws.
+2. Plug the ESP32 DevKit into the breakout board. Keep the USB port accessible for flashing and debugging.
+
+<p>
+<img src="images/upper_chassis_components.jpeg" height="250" alt="Top plate components"/>
+<img src="images/upper_chassis_assembled.jpeg" height="250" alt="ESP32 mounted on top plate"/>
+</p>
+
+## Step 8: Final Assembly
+
+| Hardware | Qty |
+|----------|-----|
 | M3x40 standoffs | 4 |
-| M3x16 screws | 2 |
+| M3x12 screws | 4 |
 
 1. Screw the 4 standoff posts into the base plate corners.
-2. Place the top deck on the standoffs and secure with M3 screws.
 
 <p>
 <img src="images/standoffs_assembly1.jpeg" height="250" alt="Standoffs and screws"/>
 <img src="images/standoffs_assembly2.jpeg" height="250" alt="Standoffs installed"/>
 </p>
 
-## Step 8: Mount the ESP32
+2. Place the top deck assembly on the standoffs and secure with M3x12 screws.
 
-| Hardware | Qty |
-|----------|-----|
-| ESP32 DevKit V1 | 1 |
-| Pin headers / breadboard | 1 |
+<img src="images/final_preassembly.jpeg" height="350" alt="Both halves before joining"/>
 
-1. Mount the ESP32 DevKit on the top deck using pin headers or a breadboard for easy access.
-2. Keep the USB port accessible for flashing and debugging.
+<p>
+<img src="images/final_assembly1.jpeg" height="250" alt="Final assembly front view"/>
+<img src="images/final_assembly2.jpeg" height="250" alt="Final assembly side view"/>
+</p>
 
 ## Done!
 
-Your MARPY robot is now physically assembled. Next steps:
+Next steps:
 
 1. **[Wiring Guide](wiring.md)** - Connect all the electrical components
 2. **[Firmware Setup](firmware-setup.md)** - Flash micro-ROS onto the ESP32
