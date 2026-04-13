@@ -5,8 +5,8 @@
   <gazebo reference="left_wheel">
     <mu1>1.0</mu1>
     <mu2>0.5</mu2>
-    <kp>1e6</kp>
-    <kd>100.0</kd>
+    <kp>1e5</kp>
+    <kd>1e3</kd>
     <minDepth>0.001</minDepth>
     <maxVel>1.0</maxVel>
   </gazebo>
@@ -14,8 +14,8 @@
   <gazebo reference="right_wheel">
     <mu1>1.0</mu1>
     <mu2>0.5</mu2>
-    <kp>1e6</kp>
-    <kd>100.0</kd>
+    <kp>1e5</kp>
+    <kd>1e3</kd>
     <minDepth>0.001</minDepth>
     <maxVel>1.0</maxVel>
   </gazebo>
@@ -24,8 +24,8 @@
   <gazebo reference="caster_wheel">
     <mu1>0.01</mu1>
     <mu2>0.01</mu2>
-    <kp>1e6</kp>
-    <kd>100.0</kd>
+    <kp>1e5</kp>
+    <kd>1e3</kd>
     <minDepth>0.001</minDepth>
   </gazebo>
 
@@ -105,7 +105,9 @@
       <wheel_separation>0.116</wheel_separation>
       <wheel_radius>0.033</wheel_radius>
       <max_linear_acceleration>1.0</max_linear_acceleration>
+      <max_linear_deceleration>1.5</max_linear_deceleration>
       <max_angular_acceleration>2.0</max_angular_acceleration>
+      <max_angular_deceleration>3.0</max_angular_deceleration>
       <topic>/cmd_vel</topic>
     </plugin>
   </gazebo>
