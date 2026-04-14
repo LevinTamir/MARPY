@@ -70,14 +70,14 @@ Each DC gear motor has 6 wires:
 
 ## Step 5: IMU Wiring (MPU6050)
 
-The MPU6050 IMU connects to the ESP32 via I2C. Since the default I2C pins (GPIO 21/22) are used by the encoders, we use GPIO 16 (SDA) and GPIO 17 (SCL).
+The MPU6050 IMU connects to the ESP32 via I2C. Since the default I2C pins (GPIO 21/22) are used by the encoders, we use GPIO 13 (SDA) and GPIO 15 (SCL).
 
 | MPU6050 Pin | Connection |
 |------------|-----------|
 | VCC | 3.3V (from ESP32 3V3 pin) |
 | GND | GND (common ground) |
-| SDA | ESP32 GPIO 16 |
-| SCL | ESP32 GPIO 17 |
+| SDA | ESP32 GPIO 13 |
+| SCL | ESP32 GPIO 15 |
 
 > **Important:** The MPU6050 runs on **3.3V**. Connect VCC to the ESP32's 3V3 pin, **not** 5V. AD0 and INT can be left unconnected (AD0 defaults to GND internally, giving I2C address 0x68).
 
