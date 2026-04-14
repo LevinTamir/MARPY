@@ -111,13 +111,28 @@ ros2 run teleop_control_node teleop_control
 | ROS Domain ID | 0 (default) |
 | Firewall | Allow UDP port 8888: `sudo ufw allow 8888/udp` |
 
+## ROS2 Topics
+
+| Topic | Type | Direction | Rate |
+|-------|------|-----------|------|
+| `/cmd_vel` | `geometry_msgs/Twist` | PC -> ESP32 | On demand |
+| `/joint_states` | `sensor_msgs/JointState` | ESP32 -> PC | 20 Hz |
+| `/odom` | `nav_msgs/Odometry` | Odometry node | 20 Hz |
+| `/odom_path` | `nav_msgs/Path` | Odometry node | 20 Hz |
+| `/imu` | `sensor_msgs/Imu` | ESP32 -> PC | 50 Hz |
+
 ## Quick Reference
 
 ```bash
 # Terminal 1: micro-ROS agent
 docker run -it --rm --net=host microros/micro-ros-agent:jazzy udp4 --port 8888 -v6
 
-# Terminal 2: Teleop
+# Terminal 2: RViz (robot visualization)
+cd marpy_ws
+source install/setup.bash
+ros2 launch marpy_description display.launch.py
+
+# Terminal 3: Teleop
 cd marpy_ws
 source install/setup.bash
 ros2 run teleop_control_node teleop_control

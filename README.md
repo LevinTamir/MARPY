@@ -82,17 +82,6 @@ The ESP32 firmware lives in a separate repo:
 
 **[marpy_firmware](https://github.com/LevinTamir/marpy_firmware)** - PlatformIO project with micro-ROS, motor control, and encoder reading.
 
-## ROS2 Topics
-
-| Topic | Type | Direction | Rate |
-|-------|------|-----------|------|
-| `/cmd_vel` | `geometry_msgs/Twist` | PC → ESP32 | On demand |
-| `/joint_states` | `sensor_msgs/JointState` | ESP32 → PC | 20 Hz |
-| `/odom` | `nav_msgs/Odometry` | Odometry node | 20 Hz |
-| `/odom_path` | `nav_msgs/Path` | Odometry node | 20 Hz |
-| `/imu` | `sensor_msgs/Imu` | IMU sensor | 50 Hz |
-
-
 ## Contributing
 
 Contributions are welcome! If you build a MARPY robot, open an issue with photos - we'd love to see it.

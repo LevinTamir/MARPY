@@ -1,5 +1,8 @@
 # Wiring Guide
 
+> [!CAUTION]
+> **NEVER connect the ESP32 to your PC via USB while the robot's batteries are switched ON.** The battery power will back-feed through the ESP32's VIN into your computer's USB port. This can damage your PC, the ESP32, or both. **Always turn off the battery switch before plugging in a USB cable** for flashing firmware, serial monitoring, or any other reason. To be safe, **disconnect the batteries entirely**.
+
 This guide covers all electrical connections for the MARPY robot. Make sure you've completed the [Assembly](assembly.md) first - all components should be physically mounted before wiring.
 
 ## Wiring Diagram
@@ -41,27 +44,42 @@ This guide covers all electrical connections for the MARPY robot. Make sure you'
 
 Each DC gear motor has 6 wires:
 
-| Wire | Connection |
-|------|-----------|
-| Motor + (red) | L298N OUT1/OUT3 |
-| Motor - (black) | L298N OUT2/OUT4 |
-| Encoder VCC (red) | 5V |
-| Encoder GND (black) | GND |
-| Encoder A (yellow/green) | ESP32 GPIO (see table below) |
-| Encoder B (white/blue) | ESP32 GPIO (see table below) |
+| Wire Color | Label | Connection |
+|-----------|-------|-----------|
+| Red | M+ | L298N OUT1/OUT3 (motor power +) |
+| Blue | M- | L298N OUT2/OUT4 (motor power -) |
+| Green | VCC | 5V (encoder power) |
+| Black | GND | GND (encoder ground) |
+| Yellow | C1 | ESP32 GPIO - Encoder Channel A (see table below) |
+| White | C2 | ESP32 GPIO - Encoder Channel B (see table below) |
 
-> **Tip:** If a motor spins the wrong direction, swap its two motor wires (+ and -) at the L298N output. If an encoder counts in the wrong direction, swap its A and B channels.
+> **Tip:** If a motor spins the wrong direction, swap its M+ (red) and M- (blue) wires at the L298N output. If an encoder counts in the wrong direction, swap its C1 (yellow) and C2 (white) channels.
 
 ## Step 4: Encoder Wiring
 
-| ESP32 GPIO | Function |
-|-----------|----------|
-| GPIO 18 | Right encoder - Channel A |
-| GPIO 19 | Right encoder - Channel B |
-| GPIO 21 | Left encoder - Channel A |
-| GPIO 22 | Left encoder - Channel B |
+| Motor Wire | Color | ESP32 GPIO | Function |
+|-----------|-------|-----------|----------|
+| C1 | Yellow | GPIO 18 | Right encoder - Channel A |
+| C2 | White | GPIO 19 | Right encoder - Channel B |
+| VCC | Green | 5V (buck converter) | Right encoder power |
+| GND | Black | GND | Right encoder ground |
+| C1 | Yellow | GPIO 21 | Left encoder - Channel A |
+| C2 | White | GPIO 22 | Left encoder - Channel B |
+| VCC | Green | 5V (buck converter) | Left encoder power |
+| GND | Black | GND | Left encoder ground |
 
-Each encoder also needs **5V** and **GND** from the buck converter output.
+## Step 5: IMU Wiring (MPU6050)
+
+The MPU6050 IMU connects to the ESP32 via I2C. Since the default I2C pins (GPIO 21/22) are used by the encoders, we use GPIO 16 (SDA) and GPIO 17 (SCL).
+
+| MPU6050 Pin | Connection |
+|------------|-----------|
+| VCC | 3.3V (from ESP32 3V3 pin) |
+| GND | GND (common ground) |
+| SDA | ESP32 GPIO 16 |
+| SCL | ESP32 GPIO 17 |
+
+> **Important:** The MPU6050 runs on **3.3V**. Connect VCC to the ESP32's 3V3 pin, **not** 5V. AD0 and INT can be left unconnected (AD0 defaults to GND internally, giving I2C address 0x68).
 
 ## Pre-Flight Checklist
 
@@ -71,6 +89,7 @@ Before powering on, verify:
 - [ ] All grounds connected together
 - [ ] Buck converter output reads ~5V with a multimeter
 - [ ] ESP32 powers on when battery is connected
+- [ ] MPU6050 VCC connected to **3.3V** (not 5V)
 - [ ] Motors are free to spin (wheels off the ground for first test)
 
 ## Next Step
