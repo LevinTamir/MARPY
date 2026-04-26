@@ -6,6 +6,7 @@ log/
 ## IDE
 .vscode/
 .idea/
+*.code-workspace
 
 ## Claude Code (local project config, not for GitHub)
 .claude/
