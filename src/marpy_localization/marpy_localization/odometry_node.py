@@ -2,7 +2,7 @@
 
 Subscribes to /joint_states (published by ESP32 or Gazebo) and produces:
   - /odom  (nav_msgs/Odometry)
-  - /odom_path  (nav_msgs/Path) — accumulated route the robot has traveled
+  - /odom_path  (nav_msgs/Path): accumulated route the robot has traveled
   - odom -> base_footprint TF broadcast
 
 This node is used in both simulation and real hardware so the data
@@ -81,7 +81,7 @@ class OdometryNode(Node):
         right_pos = msg.position[right_idx]
         # Use the message stamp so odom->base_footprint shares a timeline with
         # the wheel TFs that robot_state_publisher derives from this same
-        # /joint_states message — otherwise the chain mixes ESP32 and PC clocks
+        # /joint_states message. Otherwise the chain mixes ESP32 and PC clocks
         # and RViz renders the wheels detaching/snapping back to base_link.
         now = Time.from_msg(msg.header.stamp)
 
