@@ -3,10 +3,11 @@
 Assumes the micro-ROS agent is already running:
   docker run -it --rm --net=host microros/micro-ros-agent:jazzy udp4 --port 8888 -v6
 
-The ESP32 firmware handles /cmd_vel and /joint_states directly.
+The ESP32 firmware handles /cmd_vel, /joint_states, and /imu directly.
 This launch file starts:
   - robot_state_publisher (URDF TFs)
   - odometry_node (computes /odom + odom->base_footprint TF from /joint_states)
+  - rviz2 (visualization, using the same config as the sim launch)
 
 Teleop is launched separately from another terminal:
   ros2 run teleop_twist_keyboard teleop_twist_keyboard
@@ -48,8 +49,17 @@ def generate_launch_description():
         output="screen",
     )
 
+    rviz = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="screen",
+        arguments=["-d", os.path.join(pkg_dir, "rviz", "display.rviz")],
+    )
+
     return LaunchDescription([
         model_arg,
         robot_state_publisher,
         odometry_node,
+        rviz,
     ])
