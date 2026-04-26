@@ -14,6 +14,7 @@ import math
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
+from rclpy.time import Time
 
 from sensor_msgs.msg import JointState
 from nav_msgs.msg import Odometry, Path
@@ -78,7 +79,11 @@ class OdometryNode(Node):
 
         left_pos = msg.position[left_idx]
         right_pos = msg.position[right_idx]
-        now = self.get_clock().now()
+        # Use the message stamp so odom->base_footprint shares a timeline with
+        # the wheel TFs that robot_state_publisher derives from this same
+        # /joint_states message — otherwise the chain mixes ESP32 and PC clocks
+        # and RViz renders the wheels detaching/snapping back to base_link.
+        now = Time.from_msg(msg.header.stamp)
 
         # Skip first message (need a previous reading to compute deltas)
         if self.prev_left_pos is None:
