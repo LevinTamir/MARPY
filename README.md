@@ -47,7 +47,10 @@ Follow the guides in order:
 # Terminal 1: Start the micro-ROS agent
 docker run -it --rm --net=host microros/micro-ros-agent:jazzy udp4 --port 8888 -v6
 
-# Terminal 2: Drive with keyboard teleop
+# Terminal 2: Launch the real robot (robot_state_publisher, odometry, RViz)
+ros2 launch marpy_bringup real.launch.py
+
+# Terminal 3: Drive with keyboard teleop
 sudo apt install ros-jazzy-teleop-twist-keyboard
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
@@ -80,7 +83,7 @@ marpy_ws/
 
 The ESP32 firmware lives in a separate repo:
 
-**[marpy_firmware](https://github.com/LevinTamir/marpy_firmware)** - PlatformIO project with micro-ROS, motor control, and encoder reading.
+**[marpy_firmware](https://github.com/LevinTamir/marpy_firmware)** - PlatformIO project with micro-ROS, motor control, encoder reading, and IMU readings.
 
 ## Contributing
 
