@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/marpy_banner.png" width="100%" alt="MARPY - Most Affordable ROS2 Platform Yet"/>
+  <img src="docs/images/marpy_banner.jpeg" width="100%" alt="MARPY - Most Affordable ROS2 Platform Yet"/>
 </p>
 
 <div align="center">
