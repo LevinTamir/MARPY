@@ -115,4 +115,4 @@ If it stays on "Waiting for micro-ROS agent..." - make sure the agent is running
 | Upload fails | Hold the **BOOT** button on ESP32 while uploading |
 | WiFi won't connect | Double-check SSID/password in `include/wifi_config.h`, ensure 2.4GHz network (ESP32 doesn't support 5GHz) |
 | Agent not found | Verify PC IP address, check firewall (`sudo ufw allow 8888/udp`) |
-| Motors don't spin | Check the [Wiring Guide](wiring.md) - verify L298N ENA/ENB jumpers are **removed** |
+| Motors don't spin | Re-check the [Wiring Guide](wiring.md). Usually a swapped IN1/IN2, missing common ground, or the ENA/ENB jumpers still in place |

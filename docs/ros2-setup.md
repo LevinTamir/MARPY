@@ -82,7 +82,11 @@ ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888 -v6
 
 ### 3. Verify the Connection
 
-Once the ESP32 is powered on and connected to WiFi, you should see it connect in the agent output. Then verify:
+Once the ESP32 is powered on and connected to WiFi, you should see it connect in the agent output.
+
+> **If the agent log stays silent / ESP32 keeps printing "Waiting for micro-ROS agent..."**, press the **EN** (reset) button on the ESP32. Agent discovery only runs at boot, so if the ESP32 came up before the agent, a reset re-runs it. (BOOT is flash-mode, not reset.)
+
+Then verify:
 
 ```bash
 # List active topics
