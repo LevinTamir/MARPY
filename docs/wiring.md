@@ -1,7 +1,7 @@
 # Wiring Guide
 
 > [!CAUTION]
-> **NEVER connect the ESP32 to your PC via USB while the robot's batteries are switched ON.** The battery power will back-feed through the ESP32's VIN into your computer's USB port. This can damage your PC, the ESP32, or both. **Always turn off the battery switch before plugging in a USB cable** for flashing firmware, serial monitoring, or any other reason. To be safe, **disconnect the batteries entirely**.
+> **NEVER connect the ESP32 to your PC via USB while the robot's batteries are switched ON.** The battery power will back-feed through the ESP32's VIN into your computer's USB port. This can damage your PC, the ESP32, or both. **Always turn off the battery switch before plugging in a USB cable** for flashing firmware or any other reason. To be safe, you can **disconnect the ESP32 entirely** from the terminal board while flashing.
 
 This guide covers all electrical connections for the MARPY robot. Make sure you've completed the [Assembly](assembly.md) first - all components should be physically mounted before wiring.
 

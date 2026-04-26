@@ -85,4 +85,3 @@ The ESP32 firmware lives in a separate repo:
 ## Contributing
 
 Contributions are welcome! If you build a MARPY robot, open an issue with photos - we'd love to see it.
-e
