@@ -1,6 +1,13 @@
 # Firmware Setup (ESP32)
 
-This guide walks you through flashing the micro-ROS firmware onto the ESP32. Make sure you've completed the [Assembly](assembly.md) and [Wiring](wiring.md) first.
+This guide walks you through flashing the micro-ROS base firmware (drive controller) onto the ESP32. Make sure you've completed the [Assembly](assembly.md) and [Wiring](wiring.md) first.
+
+The repo holds two independent PlatformIO projects:
+
+- `base/` (this guide): the ESP32 drive controller, publishes `/joint_states` and `/imu`, subscribes to `/cmd_vel`.
+- `cam/`: an optional ESP32-CAM vision firmware that streams JPEG frames. See `cam/README.md` in the firmware repo for its setup.
+
+Both can flash independently and connect to the same micro-ROS agent.
 
 ## What is PlatformIO?
 
@@ -29,13 +36,13 @@ cd marpy_firmware
 
 ## 2. Configure WiFi and Agent IP
 
-Create your private config file from the template:
+Create your private config file from the template (note the `base/` prefix):
 
 ```bash
-cp include/wifi_config.h.example include/wifi_config.h
+cp base/include/wifi_config.h.example base/include/wifi_config.h
 ```
 
-Edit `include/wifi_config.h` with your network details:
+Edit `base/include/wifi_config.h` with your network details:
 
 ```cpp
 static char WIFI_SSID[] = "YOUR_WIFI_SSID";        // your Wi-Fi network name
@@ -78,25 +85,25 @@ echo "IP:   $(hostname -I | awk '{print $1}')"
 ### Using VS Code (recommended)
 
 1. Open the `marpy_firmware` folder in VS Code (`File > Open Folder`)
-2. PlatformIO will detect the `platformio.ini` file and configure the project automatically
+2. PlatformIO detects the `base/platformio.ini` file and configures the project automatically. (The `cam/` subfolder is a separate PlatformIO project; ignore it for this guide.)
 3. Connect the ESP32 via USB
-4. Click the **Upload** button (right arrow icon ➜) in the bottom status bar
+4. Click the **Upload** button (right arrow icon) in the bottom status bar. The status bar shows the active PIO project, click it to switch to `base` if needed.
 
-   You can also find it in the PlatformIO sidebar: `PROJECT TASKS > esp32dev > Upload`
+   You can also find it in the PlatformIO sidebar: `PROJECT TASKS > base > esp32dev > Upload`.
 
 5. Wait for it to compile and flash. You'll see `SUCCESS` in the terminal when done
 
 ### Using the CLI
 
-If you prefer the terminal:
+If you prefer the terminal (run from the firmware repo root):
 ```bash
-pio run --target upload
+pio run -d base --target upload
 ```
 
 ## 4. Monitor Serial Output
 
 ```bash
-pio device monitor -b 115200
+pio device monitor -d base -b 115200
 ```
 
 You should see:
@@ -113,6 +120,6 @@ If it stays on "Waiting for micro-ROS agent..." - make sure the agent is running
 | Problem | Solution |
 |---------|----------|
 | Upload fails | Hold the **BOOT** button on ESP32 while uploading |
-| WiFi won't connect | Double-check SSID/password in `include/wifi_config.h`, ensure 2.4GHz network (ESP32 doesn't support 5GHz) |
+| WiFi won't connect | Double-check SSID/password in `base/include/wifi_config.h`, ensure 2.4GHz network (ESP32 doesn't support 5GHz) |
 | Agent not found | Verify PC IP address, check firewall (`sudo ufw allow 8888/udp`) |
 | Motors don't spin | Re-check the [Wiring Guide](wiring.md). Usually a swapped IN1/IN2, missing common ground, or the ENA/ENB jumpers still in place |
