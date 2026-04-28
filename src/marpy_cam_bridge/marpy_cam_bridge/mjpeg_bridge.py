@@ -24,10 +24,14 @@ class MjpegBridge(Node):
         self.declare_parameter("topic", "/camera/image_raw")
         self.declare_parameter("frame_id", "camera_optical_frame")
         self.declare_parameter("reconnect_delay_s", 2.0)
+        # 0=none, 90=CCW, 180=180, 270=CW. The cam is mounted rotated on the
+        # robot, so we straighten it here before publishing.
+        self.declare_parameter("rotate_deg", 90)
 
         self._stream_url = self.get_parameter("stream_url").value
         self._frame_id = self.get_parameter("frame_id").value
         self._reconnect_delay = float(self.get_parameter("reconnect_delay_s").value)
+        self._rotate_deg = int(self.get_parameter("rotate_deg").value)
 
         topic = self.get_parameter("topic").value
         self._pub = self.create_publisher(Image, topic, 10)
@@ -69,7 +73,16 @@ class MjpegBridge(Node):
             if self._stop.wait(self._reconnect_delay):
                 return
 
+    _ROT_CODES = {
+        90: cv2.ROTATE_90_COUNTERCLOCKWISE,
+        180: cv2.ROTATE_180,
+        270: cv2.ROTATE_90_CLOCKWISE,
+    }
+
     def _publish(self, frame):
+        rot = self._ROT_CODES.get(self._rotate_deg)
+        if rot is not None:
+            frame = cv2.rotate(frame, rot)
         msg = self._bridge.cv2_to_imgmsg(frame, encoding="bgr8")
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = self._frame_id
