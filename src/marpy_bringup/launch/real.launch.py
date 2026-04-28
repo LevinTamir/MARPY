@@ -3,10 +3,14 @@
 Assumes the micro-ROS agent is already running:
   docker run -it --rm --net=host microros/micro-ros-agent:jazzy udp4 --port 8888 -v6
 
-The ESP32 firmware handles /cmd_vel, /joint_states, and /imu directly.
+The base ESP32 firmware handles /cmd_vel, /joint_states, and /imu over micro-ROS.
+The cam ESP32 serves MJPEG over plain HTTP at http://marpy-cam.local/stream;
+the marpy_cam_bridge node pulls that stream and republishes /camera/image_raw.
+
 This launch file starts:
   - robot_state_publisher (URDF TFs)
   - odometry_node (computes /odom + odom->base_footprint TF from /joint_states)
+  - marpy_cam_bridge (HTTP MJPEG -> sensor_msgs/Image)
   - rviz2 (visualization, using the same config as the sim launch)
 
 Teleop is launched separately from another terminal:
@@ -49,6 +53,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    cam_bridge = Node(
+        package="marpy_cam_bridge",
+        executable="mjpeg_bridge",
+        name="marpy_cam_bridge",
+        output="screen",
+        parameters=[{
+            "stream_url": "http://marpy-cam.local:81/stream",
+            "topic": "/camera/image_raw",
+            "frame_id": "camera_optical_frame",
+        }],
+    )
+
     rviz = Node(
         package="rviz2",
         executable="rviz2",
@@ -61,5 +77,6 @@ def generate_launch_description():
         model_arg,
         robot_state_publisher,
         odometry_node,
+        cam_bridge,
         rviz,
     ])
