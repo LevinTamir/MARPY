@@ -17,7 +17,7 @@ A cheap, open-source, 3D-printed differential-drive robot designed for beginners
 - Ubuntu 24.04
 - ROS2 Jazzy (or Docker)
 - PlatformIO (for flashing the ESP32)
-- WiFi network (2.4 GHz - ESP32 doesn't support 5 GHz)
+- A 2.4 GHz WiFi network the PC and the ESP32 boards can both join. A mobile phone hotspot works well (verified on iOS); the ESP32 does not support 5 GHz, so make sure the hotspot is on 2.4 GHz.
 
 ## Quick Start
 
