@@ -59,9 +59,10 @@ def generate_launch_description():
         name="marpy_cam_bridge",
         output="screen",
         parameters=[{
-            # mDNS doesn't resolve on the robot-network AP, so default to the
-            # cam's IP. Override with -p stream_url:=... if it changes.
-            "stream_url": "http://192.168.50.238:81/stream",
+            # Use mDNS so the bridge survives DHCP changes between APs.
+            # Override with -p stream_url:=http://<ip>:81/stream on networks
+            # that don't resolve .local (some travel routers).
+            "stream_url": "http://marpy-cam.local:81/stream",
             "topic": "/camera/image_raw",
             "frame_id": "camera_optical_frame",
         }],
