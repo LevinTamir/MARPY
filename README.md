@@ -88,11 +88,12 @@ marpy_ws/
 └── .github/workflows/      ← CI/CD pipeline
 ```
 
-## Firmware Repository
+## Firmware Repositories
 
-The ESP32 firmware lives in a separate repo:
+The ESP32 firmware lives in two separate repos:
 
-**[marpy_firmware](https://github.com/LevinTamir/marpy_firmware)** - PlatformIO project with micro-ROS, motor control, encoder reading, and IMU readings.
+- **[marpy_firmware](https://github.com/LevinTamir/marpy_firmware)** - PlatformIO project for the ESP32 drive controller: micro-ROS, motor control, encoder reading, and IMU.
+- **[marpy_cam_firmware](https://github.com/LevinTamir/marpy_cam_firmware)** *(optional)* - PlatformIO project for the ESP32-CAM: serves an MJPEG stream over HTTP, republished as `sensor_msgs/Image` by the `marpy_cam_bridge` node.
 
 ## Contributing
 
