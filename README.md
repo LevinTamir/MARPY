@@ -55,6 +55,15 @@ sudo apt install ros-jazzy-teleop-twist-keyboard
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
+## Demos
+
+**Real robot:**
+
+[![MARPY real robot demo](docs/images/demo_real_thumb.jpg)](https://youtu.be/ZrNPOut3CuA)
+
+**Simulation:**
+
+[![MARPY simulation demo](docs/images/demo_sim_thumb.jpg)](https://youtu.be/tEwZcNDOt3I)
 
 ## Repository Structure
 
@@ -87,4 +96,4 @@ The ESP32 firmware lives in a separate repo:
 
 ## Contributing
 
-Contributions are welcome! If you build a MARPY robot, open an issue with photos - we'd love to see it.
+Contributions are welcome! If you build a MARPY robot, open an issue with photos so everyone can see it.
